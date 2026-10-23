@@ -8,7 +8,9 @@ struct MemoryStruct {
   char *memory;
   size_t size;
 };
- 
+
+void write_json(char *memory);
+
 static size_t write_cb(char *contents, size_t size, size_t nmemb, void *userp)
 {
   size_t realsize = size * nmemb;
@@ -33,6 +35,7 @@ static size_t write_cb(char *contents, size_t size, size_t nmemb, void *userp)
 int main(int argc, char **argv) {
     if(argc != 2) {
         printf("Usage: %s <city>\n", argv[0]);
+        return EXIT_FAILURE;
     }
 
     CURL *curl;
@@ -54,7 +57,7 @@ int main(int argc, char **argv) {
         /* specify URL to get */
         char url[200] = "https://wttr.in/";
         strcat(url, argv[1]);
-        strcat(url, "?0F");
+        strcat(url, "?format=j1");
         printf("Connecting to: %s...\n", url);
         curl_easy_setopt(curl, CURLOPT_URL, url);
     
@@ -81,9 +84,9 @@ int main(int argc, char **argv) {
             if(chunk.memory) {
                 printf("%lu bytes retrieved\n", (unsigned long)chunk.size);
                 printf("%s\n", chunk.memory);
+
+                write_json((unsigned long)chunk.size, chunk.memory);
             }
-
-
 
         }
     
@@ -96,8 +99,18 @@ int main(int argc, char **argv) {
     /* we are done with libcurl, so clean it up */
     curl_global_cleanup();
     
-    return (int)result;
-
+    if(!(int)result) {
+        printf("Bad curl result\n");
+        return EXIT_FAILURE;
+    }
 
     return EXIT_SUCCESS;
+}
+
+void write_json(size_t size, char *memory) {
+    FILE * f;
+    f = fopen("./result.json", "w");
+    fwrite(f, size, size, memory);
+    fclose(f);
+
 }

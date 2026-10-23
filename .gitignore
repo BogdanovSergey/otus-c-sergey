@@ -1,4 +1,7 @@
 /.obsidian/
 /.idea/
 /.git/
-
+a.out
+a.exe
+*.i
+*.s

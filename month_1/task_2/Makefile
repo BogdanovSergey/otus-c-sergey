@@ -5,5 +5,8 @@ all:
 test:
 	valgrind ./$(OUTFILE)
 
+preprocess:
+	gcc -E -c main.c -lcurl -o main.i
+
 clean:
 	rm -rf ./$(OUTFILE)
