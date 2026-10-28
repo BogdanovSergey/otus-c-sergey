@@ -60,8 +60,6 @@ int main(int argc, char **argv) {
     /* init the curl session */
     curl = curl_easy_init();
     if(curl) {
-    
-        /* specify URL to get */
         char url[200] = "https://wttr.in/";
         strcat(url, argv[1]);
         strcat(url, "?format=j1");
@@ -78,16 +76,12 @@ int main(int argc, char **argv) {
         field, so we provide one */
         curl_easy_setopt(curl, CURLOPT_USERAGENT, "libcurl-agent/1.0");
     
-        /* get it! */
         result = curl_easy_perform(curl);
     
-        /* check for errors */
         if(result != CURLE_OK) {
             fprintf(stderr, "curl_easy_perform() failed: %s\n",
                 curl_easy_strerror(result));
-        }
-        else {
-        
+        } else {
             if(chunk.memory) {
                 printf("%zu bytes retrieved\n", chunk.size);
                 //printf("%s\n", chunk.memory);
