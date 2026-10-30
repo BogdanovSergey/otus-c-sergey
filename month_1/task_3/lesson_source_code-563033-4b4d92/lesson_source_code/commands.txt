@@ -1,0 +1,3 @@
+gcc -S 00_var.c
+gcc -S -masm=intel 00_var.c
+gcc -S -fno-asynchronous-unwind-tables -fno-dwarf2-cfi-asm 00_var.c
