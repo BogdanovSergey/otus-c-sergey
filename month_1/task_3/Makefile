@@ -1,6 +1,6 @@
 OUTFILE=main
 all:
-	gcc -Wall -Wextra -Wpedantic -std=c11 llist.c -o $(OUTFILE)
+	gcc -Wall -Wextra -Wpedantic -std=c11 main.c -o $(OUTFILE)
 
 test:
 	valgrind ./$(OUTFILE)
@@ -8,5 +8,5 @@ test:
 preprocess:
 	gcc -E -c main.c -o main.i
 
-clean:Ж
+clean:
 	rm -rf ./$(OUTFILE) ./$(OUTFILE).i ./$(OUTFILE).s

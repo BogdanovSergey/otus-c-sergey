@@ -2,11 +2,10 @@
 #include <stdlib.h>
 #include <stdint.h>
 
-
 char *empty_str = "";
 int64_t data[] = {4, 8, 15, 16, 23, 42};
 char *int_format = "%ld ";
-uint8_t data_length = sizeof(data) / sizeof(data[0]);
+size_t DATA_LENGTH = sizeof(data) / sizeof(data[0]);
 
 struct node_ {
     int64_t value;
@@ -14,109 +13,73 @@ struct node_ {
 };
 typedef struct node_ Node;
 
-void print_elements(Node *listPtr);
+void m(Node *list, void (*func)(int64_t));
 void print_int(long x);
-//void add_element();
 
 
 Node* add_element(int64_t value, Node *listPtr) {
     Node *new_node = malloc(sizeof(Node));
+    if(!new_node) abort();
+
     new_node->value = value;
     new_node->next = listPtr;
 
     return new_node;
 }
 
-int main() {
 
-    // Node my_node = {
-    //     .next= NULL,
-    //     .value= 0
-    // };
+void m(Node *list, void (*func)(int64_t)) {
+    if(list == NULL) return;
 
-    Node *listPtr = NULL;
+    func(list->value);
 
-    //print_int(5);
-
-    listPtr = add_element(123, listPtr);
-    Node *head = listPtr->next;
-    listPtr = add_element(456, listPtr);
-
-    //printf(int_format, listPtr->value);
-    print_elements(head);
-
-    //printf(int_format, my_node.next->value);
-
-    // struct Node *new_node
-
-    return EXIT_SUCCESS;
-
-}
-
-void print_elements(Node *listPtr) {
-    Node *el = listPtr;
-    while(el->next != NULL) {
-
-        printf(int_format, el->value);
-        el = el->next;
-    }
-    
-     
+    m(list->next, func);
 
  }
 
 void print_int(long x) {
     printf(int_format, x);
-
+    fflush(stdout);
 }
 
-/*
-Шаг №0 - связный список
-    Создание списка
-    Добавление элемента
-    Печать элементов
+int p(long value) {
+    return value & 1;
+}
 
+Node* f(Node* list, Node* acc, int (*pred)(long)) {
+    if (!list) return acc;
+    
+    if (pred(list->value)) {
+        // Если предикат истинен, добавляем элемент в аккумулятор (в начало)
+        acc = add_element(list->value, acc);
+    }
+    
+    // Рекурсивно обрабатываем хвост
+    return f(list->next, acc, pred);
+}
 
-Тезисы-подзадачи для самостоятельной реализации
+int main() {
+    Node *list = NULL;
 
-Определи структуру данных
-    Создай struct Node, которая точно повторяет ассемблерную: два поля по 8 байт (значение и указатель на следующий узел).
-    Подумай, какие типы данных использовать (long, int64_t, void*?), чтобы размер структуры был ровно 16 байт на x86_64.
+    //print_int(5);
 
-Реализуй функцию создания узла (add_element / cons)
-    Выделение памяти через malloc.
-    Заполнение полей: значение и указатель на следующий узел.
-    Обработка ошибки выделения памяти (как в оригинале — abort).
-    Возврат указателя на новый узел.
+    // Собираем список. Идем по массиву с конца, 
+    // так как add_element добавляет в голову (prepend).
+    for (int i = DATA_LENGTH - 1; i >= 0; i--) {
+        list = add_element(data[i], list);
+    }
 
-Напиши функцию обхода списка (m / map / foreach)
-    Базовый случай: если список пуст — выход.
-    Применение переданной функции к значению текущего узла.
-    Рекурсивный вызов для следующего узла.
-    Подумай, как передать указатель на функцию (сигнатура void (*func)(long)).
+    // Печать исходного списка
+    m(list, print_int);
+    puts("");
+    
+    // Фильтрация: оставляем только нечетные
+    Node* filtered_list = f(list, NULL, p);
+    
+    // Печать отфильтрованного списка
+    m(filtered_list, print_int);
+    puts("");
 
-Реализуй предикат (p)
-    Простая функция, возвращающая 0 или 1.
-    Проверка на нечетность через побитовое И (& 1).
+    return EXIT_SUCCESS;
 
-Напиши функцию фильтрации (f / filter)
-    Это самая сложная часть. Разбей её на шаги:
-    Базовый случай: если список пуст — вернуть аккумулятор.
-    Вызов предиката для текущего значения.
-    Если предикат истинен — добавить элемент в аккумулятор (используя add_element).
-    Рекурсивный вызов для следующего узла с обновленным аккумулятором.
-    Подумай, почему порядок элементов в отфильтрованном списке будет обратным.
-
-Собери всё в main
-    Объяви массив исходных данных.
-    Построй список: подумай, в каком порядке обходить массив и как использовать add_element, чтобы итоговый список был в прямом порядке.
-    Вызови печать исходного списка.
-    Вызови фильтрацию (передав предикат и пустой аккумулятор).
-    Вызови печать отфильтрованного списка.
-
-(Опционально) Подумай о ресурсах
-В оригинале память не освобождается. Если хочешь сделать "правильно" — добавь функцию рекурсивного освобождения списка и вызови её перед выходом из main.
-Подумай, как избежать stack overflow при работе с очень длинными списками (итеративный вариант m и f).
-
-Совет: Начни с компиляции и запуска каждого шага по отдельности. Сначала построй список и напечатай его, потом добавь предикат, потом фильтрацию. Так легче отлаживать.
-*/
+}
