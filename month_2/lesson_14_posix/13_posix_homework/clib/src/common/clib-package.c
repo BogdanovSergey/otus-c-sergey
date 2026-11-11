@@ -1,3 +1,4 @@
+#define _DEFAULT_SOURCE
 //
 // clib-package.c
 //
@@ -1002,7 +1003,7 @@ static void *fetch_package_file_thread(void *arg) {
   *status = rc;
   (void)data->pkg->refs--;
   pthread_exit((void *)status);
-  return (void *)rc;
+  //return (void *)rc;
 }
 #endif
 
@@ -1063,7 +1064,7 @@ static int fetch_package_file(clib_package_t *pkg, const char *dir, char *file,
 #endif
 }
 
-int clib_package_install_executable(clib_package_t *pkg, char *dir,
+int clib_package_install_executable(clib_package_t *pkg, const char *dir,
                                     int verbose) {
 #ifdef PATH_MAX
   long path_max = PATH_MAX;
@@ -1410,6 +1411,7 @@ int clib_package_install(clib_package_t *pkg, const char *dir, int verbose) {
                       pkg->makefile, pkg->name);
         }
       }
+      free(data);
     }
 #endif
   }
@@ -1489,7 +1491,7 @@ download:
       while (--i >= 0) {
         fetch_package_file_thread_data_t *data = fetchs[i];
         int *status = 0;
-        pthread_join(data->thread, (void **)status);
+        pthread_join(data->thread, (void **)&status);
         free(data);
         fetchs[i] = NULL;
 
@@ -1519,7 +1521,7 @@ download:
     fetch_package_file_thread_data_t *data = fetchs[i];
     int *status = 0;
 
-    pthread_join(data->thread, (void **)status);
+    pthread_join(data->thread, (void **)&status);
 
     (void)pending--;
     free(data);
