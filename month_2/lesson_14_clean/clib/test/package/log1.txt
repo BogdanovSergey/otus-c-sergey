@@ -1,0 +1,207 @@
+==25919== Memcheck, a memory error detector
+==25919== Copyright (C) 2002-2024, and GNU GPL'd, by Julian Seward et al.
+==25919== Using Valgrind-3.26.0 and LibVEX; rerun with -h for copyright info
+==25919== Command: ./package-dependency-new
+==25919== 
+==25919== 
+==25919== HEAP SUMMARY:
+==25919==     in use at exit: 56 bytes in 1 blocks
+==25919==   total heap usage: 4,514 allocs, 4,513 frees, 271,949 bytes allocated
+==25919== 
+==25919== LEAK SUMMARY:
+==25919==    definitely lost: 0 bytes in 0 blocks
+==25919==    indirectly lost: 0 bytes in 0 blocks
+==25919==      possibly lost: 0 bytes in 0 blocks
+==25919==    still reachable: 56 bytes in 1 blocks
+==25919==         suppressed: 0 bytes in 0 blocks
+==25919== Reachable blocks (those to which a pointer was found) are not shown.
+==25919== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==25919== 
+==25919== For lists of detected and suppressed errors, rerun with: -s
+==25919== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==25920== Memcheck, a memory error detector
+==25920== Copyright (C) 2002-2024, and GNU GPL'd, by Julian Seward et al.
+==25920== Using Valgrind-3.26.0 and LibVEX; rerun with -h for copyright info
+==25920== Command: ./package-install
+==25920== 
+==25920== 
+==25920== HEAP SUMMARY:
+==25920==     in use at exit: 2,356,902 bytes in 30,017 blocks
+==25920==   total heap usage: 147,323 allocs, 117,306 frees, 21,931,411 bytes allocated
+==25920== 
+==25920== 5 bytes in 1 blocks are definitely lost in loss record 4 of 355
+==25920==    at 0x48B1858: malloc (vg_replace_malloc.c:447)
+==25920==    by 0x403AF91: strdup (strdup.c:24)
+==25920==    by 0x4019889: clib_package_install (clib-package.c:1384)
+==25920==    by 0x4014350: main (package-install.c:35)
+==25920== 
+==25920== 5 bytes in 1 blocks are definitely lost in loss record 5 of 355
+==25920==    at 0x48B1858: malloc (vg_replace_malloc.c:447)
+==25920==    by 0x403AF91: strdup (strdup.c:24)
+==25920==    by 0x4019889: clib_package_install (clib-package.c:1384)
+==25920==    by 0x40144FC: main (package-install.c:46)
+==25920== 
+==25920== 7 bytes in 1 blocks are definitely lost in loss record 8 of 355
+==25920==    at 0x48B1858: malloc (vg_replace_malloc.c:447)
+==25920==    by 0x403AF91: strdup (strdup.c:24)
+==25920==    by 0x4019889: clib_package_install (clib-package.c:1384)
+==25920==    by 0x4016686: install_packages (clib-package.c:375)
+==25920==    by 0x401A312: clib_package_install_dependencies (clib-package.c:1616)
+==25920==    by 0x401A1E2: clib_package_install (clib-package.c:1580)
+==25920==    by 0x40146F2: main (package-install.c:56)
+==25920== 
+==25920== 14 bytes in 2 blocks are definitely lost in loss record 13 of 355
+==25920==    at 0x48B1858: malloc (vg_replace_malloc.c:447)
+==25920==    by 0x403AF91: strdup (strdup.c:24)
+==25920==    by 0x4019889: clib_package_install (clib-package.c:1384)
+==25920==    by 0x4016686: install_packages (clib-package.c:375)
+==25920==    by 0x401A312: clib_package_install_dependencies (clib-package.c:1616)
+==25920==    by 0x401A1E2: clib_package_install (clib-package.c:1580)
+==25920==    by 0x4014C89: main (package-install.c:84)
+==25920== 
+==25920== 14 bytes in 2 blocks are definitely lost in loss record 14 of 355
+==25920==    at 0x48B1858: malloc (vg_replace_malloc.c:447)
+==25920==    by 0x403AF91: strdup (strdup.c:24)
+==25920==    by 0x4019889: clib_package_install (clib-package.c:1384)
+==25920==    by 0x4016686: install_packages (clib-package.c:375)
+==25920==    by 0x401A312: clib_package_install_dependencies (clib-package.c:1616)
+==25920==    by 0x401A1E2: clib_package_install (clib-package.c:1580)
+==25920==    by 0x4016686: install_packages (clib-package.c:375)
+==25920==    by 0x401A312: clib_package_install_dependencies (clib-package.c:1616)
+==25920==    by 0x401A1E2: clib_package_install (clib-package.c:1580)
+==25920==    by 0x4016686: install_packages (clib-package.c:375)
+==25920==    by 0x401A312: clib_package_install_dependencies (clib-package.c:1616)
+==25920==    by 0x401A1E2: clib_package_install (clib-package.c:1580)
+==25920== 
+==25920== 57 bytes in 7 blocks are definitely lost in loss record 52 of 355
+==25920==    at 0x48B1858: malloc (vg_replace_malloc.c:447)
+==25920==    by 0x403AF91: strdup (strdup.c:24)
+==25920==    by 0x4019889: clib_package_install (clib-package.c:1384)
+==25920==    by 0x4016686: install_packages (clib-package.c:375)
+==25920==    by 0x401A312: clib_package_install_dependencies (clib-package.c:1616)
+==25920==    by 0x401A1E2: clib_package_install (clib-package.c:1580)
+==25920==    by 0x4016686: install_packages (clib-package.c:375)
+==25920==    by 0x401A312: clib_package_install_dependencies (clib-package.c:1616)
+==25920==    by 0x401A1E2: clib_package_install (clib-package.c:1580)
+==25920==    by 0x4014C89: main (package-install.c:84)
+==25920== 
+==25920== 94 (64 direct, 30 indirect) bytes in 2 blocks are definitely lost in loss record 85 of 355
+==25920==    at 0x48B1858: malloc (vg_replace_malloc.c:447)
+==25920==    by 0x40348A5: http_get_shared (http-get.c:46)
+==25920==    by 0x40175FF: clib_package_new_from_slug_with_package_name (clib-package.c:661)
+==25920==    by 0x4017CAE: clib_package_new_from_slug (clib-package.c:797)
+==25920==    by 0x40140E1: main (package-install.c:23)
+==25920== 
+==25920== 94 (64 direct, 30 indirect) bytes in 2 blocks are definitely lost in loss record 86 of 355
+==25920==    at 0x48B1858: malloc (vg_replace_malloc.c:447)
+==25920==    by 0x40348A5: http_get_shared (http-get.c:46)
+==25920==    by 0x40175FF: clib_package_new_from_slug_with_package_name (clib-package.c:661)
+==25920==    by 0x4017CAE: clib_package_new_from_slug (clib-package.c:797)
+==25920==    by 0x40142DD: main (package-install.c:33)
+==25920== 
+==25920== 94 (64 direct, 30 indirect) bytes in 2 blocks are definitely lost in loss record 87 of 355
+==25920==    at 0x48B1858: malloc (vg_replace_malloc.c:447)
+==25920==    by 0x40348A5: http_get_shared (http-get.c:46)
+==25920==    by 0x40175FF: clib_package_new_from_slug_with_package_name (clib-package.c:661)
+==25920==    by 0x4017CAE: clib_package_new_from_slug (clib-package.c:797)
+==25920==    by 0x4014489: main (package-install.c:44)
+==25920== 
+==25920== 94 (64 direct, 30 indirect) bytes in 2 blocks are definitely lost in loss record 88 of 355
+==25920==    at 0x48B1858: malloc (vg_replace_malloc.c:447)
+==25920==    by 0x40348A5: http_get_shared (http-get.c:46)
+==25920==    by 0x40175FF: clib_package_new_from_slug_with_package_name (clib-package.c:661)
+==25920==    by 0x4017CAE: clib_package_new_from_slug (clib-package.c:797)
+==25920==    by 0x401467F: main (package-install.c:54)
+==25920== 
+==25920== 94 (64 direct, 30 indirect) bytes in 2 blocks are definitely lost in loss record 89 of 355
+==25920==    at 0x48B1858: malloc (vg_replace_malloc.c:447)
+==25920==    by 0x40348A5: http_get_shared (http-get.c:46)
+==25920==    by 0x40175FF: clib_package_new_from_slug_with_package_name (clib-package.c:661)
+==25920==    by 0x4017CAE: clib_package_new_from_slug (clib-package.c:797)
+==25920==    by 0x4016665: install_packages (clib-package.c:371)
+==25920==    by 0x401A312: clib_package_install_dependencies (clib-package.c:1616)
+==25920==    by 0x401A1E2: clib_package_install (clib-package.c:1580)
+==25920==    by 0x4016686: install_packages (clib-package.c:375)
+==25920==    by 0x401A312: clib_package_install_dependencies (clib-package.c:1616)
+==25920==    by 0x401A1E2: clib_package_install (clib-package.c:1580)
+==25920==    by 0x40146F2: main (package-install.c:56)
+==25920== 
+==25920== 94 (64 direct, 30 indirect) bytes in 2 blocks are definitely lost in loss record 90 of 355
+==25920==    at 0x48B1858: malloc (vg_replace_malloc.c:447)
+==25920==    by 0x40348A5: http_get_shared (http-get.c:46)
+==25920==    by 0x40175FF: clib_package_new_from_slug_with_package_name (clib-package.c:661)
+==25920==    by 0x4017CAE: clib_package_new_from_slug (clib-package.c:797)
+==25920==    by 0x4014948: main (package-install.c:68)
+==25920== 
+==25920== 94 (64 direct, 30 indirect) bytes in 2 blocks are definitely lost in loss record 91 of 355
+==25920==    at 0x48B1858: malloc (vg_replace_malloc.c:447)
+==25920==    by 0x40348A5: http_get_shared (http-get.c:46)
+==25920==    by 0x40175FF: clib_package_new_from_slug_with_package_name (clib-package.c:661)
+==25920==    by 0x4017CAE: clib_package_new_from_slug (clib-package.c:797)
+==25920==    by 0x4014C16: main (package-install.c:82)
+==25920== 
+==25920== 188 (128 direct, 60 indirect) bytes in 4 blocks are definitely lost in loss record 147 of 355
+==25920==    at 0x48B1858: malloc (vg_replace_malloc.c:447)
+==25920==    by 0x40348A5: http_get_shared (http-get.c:46)
+==25920==    by 0x40175FF: clib_package_new_from_slug_with_package_name (clib-package.c:661)
+==25920==    by 0x4017CAE: clib_package_new_from_slug (clib-package.c:797)
+==25920==    by 0x4016665: install_packages (clib-package.c:371)
+==25920==    by 0x401A312: clib_package_install_dependencies (clib-package.c:1616)
+==25920==    by 0x401A1E2: clib_package_install (clib-package.c:1580)
+==25920==    by 0x40146F2: main (package-install.c:56)
+==25920== 
+==25920== 188 (128 direct, 60 indirect) bytes in 4 blocks are definitely lost in loss record 148 of 355
+==25920==    at 0x48B1858: malloc (vg_replace_malloc.c:447)
+==25920==    by 0x40348A5: http_get_shared (http-get.c:46)
+==25920==    by 0x40175FF: clib_package_new_from_slug_with_package_name (clib-package.c:661)
+==25920==    by 0x4017CAE: clib_package_new_from_slug (clib-package.c:797)
+==25920==    by 0x4016665: install_packages (clib-package.c:371)
+==25920==    by 0x401A312: clib_package_install_dependencies (clib-package.c:1616)
+==25920==    by 0x401A1E2: clib_package_install (clib-package.c:1580)
+==25920==    by 0x4016686: install_packages (clib-package.c:375)
+==25920==    by 0x401A312: clib_package_install_dependencies (clib-package.c:1616)
+==25920==    by 0x401A1E2: clib_package_install (clib-package.c:1580)
+==25920==    by 0x4016686: install_packages (clib-package.c:375)
+==25920==    by 0x401A312: clib_package_install_dependencies (clib-package.c:1616)
+==25920== 
+==25920== 276 bytes in 69 blocks are definitely lost in loss record 172 of 355
+==25920==    at 0x48B1858: malloc (vg_replace_malloc.c:447)
+==25920==    by 0x401854D: fetch_package_file_thread (clib-package.c:1000)
+==25920==    by 0x4A74DF9: start_thread (pthread_create.c:454)
+==25920==    by 0x4B083D3: clone (clone.S:100)
+==25920== 
+==25920== 940 (640 direct, 300 indirect) bytes in 20 blocks are definitely lost in loss record 237 of 355
+==25920==    at 0x48B1858: malloc (vg_replace_malloc.c:447)
+==25920==    by 0x40348A5: http_get_shared (http-get.c:46)
+==25920==    by 0x40175FF: clib_package_new_from_slug_with_package_name (clib-package.c:661)
+==25920==    by 0x4017CAE: clib_package_new_from_slug (clib-package.c:797)
+==25920==    by 0x4016665: install_packages (clib-package.c:371)
+==25920==    by 0x401A312: clib_package_install_dependencies (clib-package.c:1616)
+==25920==    by 0x401A1E2: clib_package_install (clib-package.c:1580)
+==25920==    by 0x4014C89: main (package-install.c:84)
+==25920== 
+==25920== 1,128 (768 direct, 360 indirect) bytes in 24 blocks are definitely lost in loss record 241 of 355
+==25920==    at 0x48B1858: malloc (vg_replace_malloc.c:447)
+==25920==    by 0x40348A5: http_get_shared (http-get.c:46)
+==25920==    by 0x40175FF: clib_package_new_from_slug_with_package_name (clib-package.c:661)
+==25920==    by 0x4017CAE: clib_package_new_from_slug (clib-package.c:797)
+==25920==    by 0x4016665: install_packages (clib-package.c:371)
+==25920==    by 0x401A312: clib_package_install_dependencies (clib-package.c:1616)
+==25920==    by 0x401A1E2: clib_package_install (clib-package.c:1580)
+==25920==    by 0x4016686: install_packages (clib-package.c:375)
+==25920==    by 0x401A312: clib_package_install_dependencies (clib-package.c:1616)
+==25920==    by 0x401A1E2: clib_package_install (clib-package.c:1580)
+==25920==    by 0x4014C89: main (package-install.c:84)
+==25920== 
+==25920== LEAK SUMMARY:
+==25920==    definitely lost: 2,490 bytes in 149 blocks
+==25920==    indirectly lost: 990 bytes in 66 blocks
+==25920==      possibly lost: 0 bytes in 0 blocks
+==25920==    still reachable: 2,353,422 bytes in 29,802 blocks
+==25920==         suppressed: 0 bytes in 0 blocks
+==25920== Reachable blocks (those to which a pointer was found) are not shown.
+==25920== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==25920== 
+==25920== For lists of detected and suppressed errors, rerun with: -s
+==25920== ERROR SUMMARY: 18 errors from 18 contexts (suppressed: 0 from 0)
+make: *** [Makefile:20: test] Error 1
