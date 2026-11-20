@@ -1,4 +1,3 @@
-
 //
 // http-get.h
 //
@@ -10,11 +9,9 @@
 #ifndef HTTP_GET_H
 #define HTTP_GET_H 1
 
-#if defined (__unix__) || (defined (__APPLE__) && defined (__MACH__))
-#include <unistd.h>
-#endif
+#include <stdlib.h>
 
-#define HTTP_GET_VERSION "0.1.0"
+#define HTTP_GET_VERSION "0.4.0"
 
 typedef struct {
   char *data;
