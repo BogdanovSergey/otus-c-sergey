@@ -12,7 +12,7 @@ TEST_BIN = $(TEST_SRC:.c=)
 
 CFLAGS += -std=c99 -Wall -I../../src/common -I../../deps -DHAVE_PTHREADS -pthread -g
 LDFLAGS = -lcurl
-VALGRIND_OPTS ?= --leak-check=full --error-exitcode=3
+VALGRIND_OPTS ?= --leak-check=full --error-exitcode=3 --show-leak-kinds=all -s
 
 .DEFAULT_GOAL := test
 
