@@ -6,3 +6,4 @@ a.out
 a.exe
 *.i
 *.s
+*.o
