@@ -1,7 +1,9 @@
 /.obsidian/
 /.idea/
+/.vscode/
 /.git/
 a.out
 a.exe
 *.i
 *.s
+*.o
