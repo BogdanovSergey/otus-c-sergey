@@ -1,15 +1,13 @@
-INFILE=main
-OUTFILE=a.out
-all:
-	gcc -Wall -Wextra -Wpedantic -std=c11 -lm $(INFILE).c `pkg-config --cflags --libs gtk4 `  -o $(OUTFILE);
+CFLAGS  = -Wall -Wextra -Wpedantic -std=c11 `pkg-config --cflags gtk4`
+LIBS    = `pkg-config --libs gtk4`
 
-test:
-	valgrind ./$(OUTFILE)
+all: gtk_app
 
-preprocess:
-	gcc -E -c $(INFILE).c -lcurl -o $(INFILE).i
+files.o: modules/files.c modules/files.h
+	gcc $(CFLAGS) -c modules/files.c -o files.o
 
-clean:
-	rm -rf ./$(OUTFILE) ./$(OUTFILE).i ./$(OUTFILE).s
+main.o: main.c modules/files.h
+	gcc $(CFLAGS) -c main.c -o main.o
 
-.PHONY: test all clean
+gtk_app: main.o files.o
+	gcc main.o files.o $(LIBS) -o gtk_app

@@ -1,7 +1,7 @@
 #include <gtk/gtk.h>
+#include "files.h"
 
 char ** get_files_arr(const char *path, char ** arr, size_t *count) {
-
     g_print ("path: %s\n", path);
 
     GError *error = NULL;
@@ -16,7 +16,12 @@ char ** get_files_arr(const char *path, char ** arr, size_t *count) {
     int fcount = 0;
 
     // Вставляем ".."
-    arr = realloc(arr, (fcount+1) * sizeof(char *));
+    arr = g_realloc(arr, (fcount+1) * sizeof(char *));
+    if(!arr) {
+        g_printerr("g_realloc error");
+        g_dir_close(dir);
+        return NULL;
+    }
     arr[fcount] = g_strdup("..");
     fcount++;
 
@@ -34,14 +39,22 @@ char ** get_files_arr(const char *path, char ** arr, size_t *count) {
             full_path = ready_path;
         }
 
-        arr = realloc(arr, (fcount + 1) * sizeof(char *));
+        arr = g_realloc(arr, (fcount + 1) * sizeof(char *));
+        if(!arr) {
+            g_printerr("g_realloc error");
+            return NULL;
+        }
         arr[fcount] = full_path;
 
         fcount++;
     }
 
     // Вставляем терминатор NULL
-    arr = realloc(arr, (fcount + 1) * sizeof(char *));
+    arr = g_realloc(arr, (fcount + 1) * sizeof(char *));
+    if(!arr) {
+        g_printerr("g_realloc error");
+        return NULL;
+    }
     arr[fcount] = NULL;
 
     *count = fcount;
