@@ -1,0 +1,167 @@
+../../deps/gumbo-parser/error.c:30:21: warning: ‘kMessageBufferSize’ defined but not used [-Wunused-const-variable=]
+   30 | static const size_t kMessageBufferSize = 256;
+      |                     ^~~~~~~~~~~~~~~~~~
+../../deps/gumbo-parser/parser.c:550:27: warning: ‘get_current_template_insertion_mode’ defined but not used [-Wunused-function]
+  550 | static GumboInsertionMode get_current_template_insertion_mode(
+      |                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../../deps/gumbo-parser/parser.c:546:13: warning: ‘pop_template_insertion_mode’ defined but not used [-Wunused-function]
+  546 | static void pop_template_insertion_mode(GumboParser* parser) {
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+../../deps/gumbo-parser/parser.c:540:13: warning: ‘push_template_insertion_mode’ defined but not used [-Wunused-function]
+  540 | static void push_template_insertion_mode(
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../../deps/parson/parson.c: In function ‘remove_comments’:
+../../deps/parson/parson.c:280:13: warning: this ‘for’ clause does not guard... [-Wmisleading-indentation]
+  280 |             for (i = 0; i < (ptr - string) + end_token_len; i++)
+      |             ^~~
+../../deps/parson/parson.c:282:17: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘for’
+  282 |                 string = ptr + end_token_len - 1;
+      |                 ^~~~~~
+In file included from ../../deps/describe/describe.h:15,
+                 from package-new.c:2:
+package-new.c: In function ‘main’:
+../../deps/assertion-macros/assertion-macros.h:146:9: warning: format ‘%s’ expects argument of type ‘char *’, but argument 4 has type ‘void *’ [-Wformat=]
+  146 |       , "Assertion error: \"%s\" == \"%s\" (%s:%d)\n"           \
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+package-new.c:49:7: note: in expansion of macro ‘assert_str_equal’
+   49 |       assert_str_equal("foo.h", list_at(pkg->src, 0)->val);
+      |       ^~~~~~~~~~~~~~~~
+../../deps/assertion-macros/assertion-macros.h:146:40: note: format string is defined here
+  146 |       , "Assertion error: \"%s\" == \"%s\" (%s:%d)\n"           \
+      |                                       ~^
+      |                                        |
+      |                                        char *
+      |                                       %p
+../../deps/assertion-macros/assertion-macros.h:146:9: warning: format ‘%s’ expects argument of type ‘char *’, but argument 4 has type ‘void *’ [-Wformat=]
+  146 |       , "Assertion error: \"%s\" == \"%s\" (%s:%d)\n"           \
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+package-new.c:50:7: note: in expansion of macro ‘assert_str_equal’
+   50 |       assert_str_equal("foo.c", list_at(pkg->src, 1)->val);
+      |       ^~~~~~~~~~~~~~~~
+../../deps/assertion-macros/assertion-macros.h:146:40: note: format string is defined here
+  146 |       , "Assertion error: \"%s\" == \"%s\" (%s:%d)\n"           \
+      |                                       ~^
+      |                                        |
+      |                                        char *
+      |                                       %p
+==107782== Memcheck, a memory error detector
+==107782== Copyright (C) 2002-2024, and GNU GPL'd, by Julian Seward et al.
+==107782== Using Valgrind-3.26.0 and LibVEX; rerun with -h for copyright info
+==107782== Command: ./package-dependency-new
+==107782== 
+==107782== 
+==107782== HEAP SUMMARY:
+==107782==     in use at exit: 56 bytes in 1 blocks
+==107782==   total heap usage: 4,514 allocs, 4,513 frees, 271,949 bytes allocated
+==107782== 
+==107782== 56 bytes in 1 blocks are still reachable in loss record 1 of 1
+==107782==    at 0x48AE858: malloc (vg_replace_malloc.c:447)
+==107782==    by 0x50A7DE5: CRYPTO_malloc (in /usr/lib/x86_64-linux-gnu/libcrypto.so.3)
+==107782==    by 0x50A7F74: CRYPTO_zalloc (in /usr/lib/x86_64-linux-gnu/libcrypto.so.3)
+==107782==    by 0x50BCF30: CRYPTO_THREAD_lock_new (in /usr/lib/x86_64-linux-gnu/libcrypto.so.3)
+==107782==    by 0x50A651C: ??? (in /usr/lib/x86_64-linux-gnu/libcrypto.so.3)
+==107782==    by 0x4A774D3: __pthread_once_slow.isra.0 (pthread_once.c:116)
+==107782==    by 0x4A77548: pthread_once@@GLIBC_2.34 (pthread_once.c:143)
+==107782==    by 0x50BD02C: CRYPTO_THREAD_run_once (in /usr/lib/x86_64-linux-gnu/libcrypto.so.3)
+==107782==    by 0x50A65DE: ??? (in /usr/lib/x86_64-linux-gnu/libcrypto.so.3)
+==107782==    by 0x50A208C: ??? (in /usr/lib/x86_64-linux-gnu/libcrypto.so.3)
+==107782==    by 0x4A774D3: __pthread_once_slow.isra.0 (pthread_once.c:116)
+==107782==    by 0x4A77548: pthread_once@@GLIBC_2.34 (pthread_once.c:143)
+==107782== 
+==107782== LEAK SUMMARY:
+==107782==    definitely lost: 0 bytes in 0 blocks
+==107782==    indirectly lost: 0 bytes in 0 blocks
+==107782==      possibly lost: 0 bytes in 0 blocks
+==107782==    still reachable: 56 bytes in 1 blocks
+==107782==         suppressed: 0 bytes in 0 blocks
+==107782== 
+==107782== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==107783== Memcheck, a memory error detector
+==107783== Copyright (C) 2002-2024, and GNU GPL'd, by Julian Seward et al.
+==107783== Using Valgrind-3.26.0 and LibVEX; rerun with -h for copyright info
+==107783== Command: ./package-install
+==107783== 
+==107783== 
+==107783== HEAP SUMMARY:
+==107783==     in use at exit: 158 bytes in 15 blocks
+==107783==   total heap usage: 147,324 allocs, 147,309 frees, 21,931,707 bytes allocated
+==107783== 
+==107783== 5 bytes in 1 blocks are definitely lost in loss record 1 of 7
+==107783==    at 0x48B1858: malloc (vg_replace_malloc.c:447)
+==107783==    by 0x403AFB5: strdup (strdup.c:24)
+==107783==    by 0x40198B2: clib_package_install (clib-package.c:1385)
+==107783==    by 0x4014370: main (package-install.c:35)
+==107783== 
+==107783== 5 bytes in 1 blocks are definitely lost in loss record 2 of 7
+==107783==    at 0x48B1858: malloc (vg_replace_malloc.c:447)
+==107783==    by 0x403AFB5: strdup (strdup.c:24)
+==107783==    by 0x40198B2: clib_package_install (clib-package.c:1385)
+==107783==    by 0x401451C: main (package-install.c:46)
+==107783== 
+==107783== 7 bytes in 1 blocks are definitely lost in loss record 3 of 7
+==107783==    at 0x48B1858: malloc (vg_replace_malloc.c:447)
+==107783==    by 0x403AFB5: strdup (strdup.c:24)
+==107783==    by 0x40198B2: clib_package_install (clib-package.c:1385)
+==107783==    by 0x40166A6: install_packages (clib-package.c:375)
+==107783==    by 0x401A327: clib_package_install_dependencies (clib-package.c:1618)
+==107783==    by 0x401A1FD: clib_package_install (clib-package.c:1582)
+==107783==    by 0x4014712: main (package-install.c:56)
+==107783== 
+==107783== 14 bytes in 2 blocks are definitely lost in loss record 4 of 7
+==107783==    at 0x48B1858: malloc (vg_replace_malloc.c:447)
+==107783==    by 0x403AFB5: strdup (strdup.c:24)
+==107783==    by 0x40198B2: clib_package_install (clib-package.c:1385)
+==107783==    by 0x40166A6: install_packages (clib-package.c:375)
+==107783==    by 0x401A327: clib_package_install_dependencies (clib-package.c:1618)
+==107783==    by 0x401A1FD: clib_package_install (clib-package.c:1582)
+==107783==    by 0x4014CA9: main (package-install.c:84)
+==107783== 
+==107783== 14 bytes in 2 blocks are definitely lost in loss record 5 of 7
+==107783==    at 0x48B1858: malloc (vg_replace_malloc.c:447)
+==107783==    by 0x403AFB5: strdup (strdup.c:24)
+==107783==    by 0x40198B2: clib_package_install (clib-package.c:1385)
+==107783==    by 0x40166A6: install_packages (clib-package.c:375)
+==107783==    by 0x401A327: clib_package_install_dependencies (clib-package.c:1618)
+==107783==    by 0x401A1FD: clib_package_install (clib-package.c:1582)
+==107783==    by 0x40166A6: install_packages (clib-package.c:375)
+==107783==    by 0x401A327: clib_package_install_dependencies (clib-package.c:1618)
+==107783==    by 0x401A1FD: clib_package_install (clib-package.c:1582)
+==107783==    by 0x40166A6: install_packages (clib-package.c:375)
+==107783==    by 0x401A327: clib_package_install_dependencies (clib-package.c:1618)
+==107783==    by 0x401A1FD: clib_package_install (clib-package.c:1582)
+==107783== 
+==107783== 56 bytes in 1 blocks are still reachable in loss record 6 of 7
+==107783==    at 0x48B1858: malloc (vg_replace_malloc.c:447)
+==107783==    by 0x50AADE5: CRYPTO_malloc (in /usr/lib/x86_64-linux-gnu/libcrypto.so.3)
+==107783==    by 0x50AAF74: CRYPTO_zalloc (in /usr/lib/x86_64-linux-gnu/libcrypto.so.3)
+==107783==    by 0x50BFF30: CRYPTO_THREAD_lock_new (in /usr/lib/x86_64-linux-gnu/libcrypto.so.3)
+==107783==    by 0x50A951C: ??? (in /usr/lib/x86_64-linux-gnu/libcrypto.so.3)
+==107783==    by 0x4A7A4D3: __pthread_once_slow.isra.0 (pthread_once.c:116)
+==107783==    by 0x4A7A548: pthread_once@@GLIBC_2.34 (pthread_once.c:143)
+==107783==    by 0x50C002C: CRYPTO_THREAD_run_once (in /usr/lib/x86_64-linux-gnu/libcrypto.so.3)
+==107783==    by 0x50A95DE: ??? (in /usr/lib/x86_64-linux-gnu/libcrypto.so.3)
+==107783==    by 0x50A508C: ??? (in /usr/lib/x86_64-linux-gnu/libcrypto.so.3)
+==107783==    by 0x4A7A4D3: __pthread_once_slow.isra.0 (pthread_once.c:116)
+==107783==    by 0x4A7A548: pthread_once@@GLIBC_2.34 (pthread_once.c:143)
+==107783== 
+==107783== 57 bytes in 7 blocks are definitely lost in loss record 7 of 7
+==107783==    at 0x48B1858: malloc (vg_replace_malloc.c:447)
+==107783==    by 0x403AFB5: strdup (strdup.c:24)
+==107783==    by 0x40198B2: clib_package_install (clib-package.c:1385)
+==107783==    by 0x40166A6: install_packages (clib-package.c:375)
+==107783==    by 0x401A327: clib_package_install_dependencies (clib-package.c:1618)
+==107783==    by 0x401A1FD: clib_package_install (clib-package.c:1582)
+==107783==    by 0x40166A6: install_packages (clib-package.c:375)
+==107783==    by 0x401A327: clib_package_install_dependencies (clib-package.c:1618)
+==107783==    by 0x401A1FD: clib_package_install (clib-package.c:1582)
+==107783==    by 0x4014CA9: main (package-install.c:84)
+==107783== 
+==107783== LEAK SUMMARY:
+==107783==    definitely lost: 102 bytes in 14 blocks
+==107783==    indirectly lost: 0 bytes in 0 blocks
+==107783==      possibly lost: 0 bytes in 0 blocks
+==107783==    still reachable: 56 bytes in 1 blocks
+==107783==         suppressed: 0 bytes in 0 blocks
+==107783== 
+==107783== ERROR SUMMARY: 6 errors from 6 contexts (suppressed: 0 from 0)
+make: *** [Makefile:20: test] Error 1

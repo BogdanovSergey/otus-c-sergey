@@ -107,16 +107,37 @@ wiki_registry_parse(const char *html) {
       // almost certinaly a malloc error
       if (!category) break;
       trim(case_lower(category));
-      GumboVector *siblings = &heading->parent->v.element.children;
-      size_t pos = heading->index_within_parent;
+
+      GumboNode *anchor = heading;
+      if (heading->parent && heading->parent->type == GUMBO_NODE_ELEMENT &&
+          heading->parent->parent &&
+          heading->parent->parent->type == GUMBO_NODE_ELEMENT) {
+        anchor = heading->parent;
+      }
+      GumboVector *siblings = &anchor->parent->v.element.children;
+      size_t pos = anchor->index_within_parent;
 
       // skip elements until the UL
       // TODO: don't hardcode position here
       // 2:
       //   1 - whitespace
       //   2 - actual node
-      GumboNode *ul = siblings->data[pos + 2];
-      if (GUMBO_TAG_UL != ul->v.element.tag) {
+      // GumboNode *ul = siblings->data[pos + 2];
+      // if (GUMBO_TAG_UL != ul->v.element.tag) {
+      //   free(category);
+      //   continue;
+      // }
+      GumboNode *ul = NULL;
+      for (size_t i = pos + 1; i < siblings->length; i++) {
+        GumboNode *n = siblings->data[i];
+        if (!n || n->type != GUMBO_NODE_ELEMENT)
+          continue;
+        if (n->v.element.tag == GUMBO_TAG_UL) {
+          ul = n;
+          break;
+        }
+      }
+      if (!ul) {
         free(category);
         continue;
       }

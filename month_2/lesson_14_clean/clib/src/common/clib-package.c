@@ -1,3 +1,4 @@
+#define _DEFAULT_SOURCE
 //
 // clib-package.c
 //
@@ -656,6 +657,7 @@ clib_package_new_from_slug_with_package_name(const char *slug, int verbose,
     } else {
 #ifdef HAVE_PTHREADS
       init_curl_share();
+      http_get_free(res);
       _debug("GET %s", json_url);
       res = http_get_shared(json_url, clib_package_curl_share);
 #else
@@ -1002,7 +1004,7 @@ static void *fetch_package_file_thread(void *arg) {
   *status = rc;
   (void)data->pkg->refs--;
   pthread_exit((void *)status);
-  return (void *)rc;
+  //return (void *)rc;
 }
 #endif
 
@@ -1063,7 +1065,7 @@ static int fetch_package_file(clib_package_t *pkg, const char *dir, char *file,
 #endif
 }
 
-int clib_package_install_executable(clib_package_t *pkg, char *dir,
+int clib_package_install_executable(clib_package_t *pkg, const char *dir,
                                     int verbose) {
 #ifdef PATH_MAX
   long path_max = PATH_MAX;
@@ -1410,6 +1412,7 @@ int clib_package_install(clib_package_t *pkg, const char *dir, int verbose) {
                       pkg->makefile, pkg->name);
         }
       }
+      free(data);
     }
 #endif
   }
@@ -1489,7 +1492,7 @@ download:
       while (--i >= 0) {
         fetch_package_file_thread_data_t *data = fetchs[i];
         int *status = 0;
-        pthread_join(data->thread, (void **)status);
+        pthread_join(data->thread, (void **)&status);
         free(data);
         fetchs[i] = NULL;
 
@@ -1519,7 +1522,7 @@ download:
     fetch_package_file_thread_data_t *data = fetchs[i];
     int *status = 0;
 
-    pthread_join(data->thread, (void **)status);
+    pthread_join(data->thread, (void **)&status);
 
     (void)pending--;
     free(data);
@@ -1696,4 +1699,5 @@ void clib_package_cleanup() {
     hash_free(visited_packages);
     visited_packages = 0;
   }
+  curl_share_cleanup(clib_package_curl_share);
 }
